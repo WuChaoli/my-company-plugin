@@ -1,0 +1,30 @@
+# Architecture Generator Configuration
+# 配置文件说明：此文件控制架构文档生成行为
+
+# 依赖图节点数阈值（当节点数超过此值时，自动拆分为多层图）
+node_threshold: 25
+
+# 最大扫描深度（null 表示无限制）
+max_depth: null
+
+# 是否启用增量扫描（只扫描修改过的文件）
+incremental: true
+
+# 额外的排除模式（遵循 .gitignore 语法）
+exclude:
+  - node_modules/
+  - __pycache__/
+  - "*.min.js"
+  - "*.min.css"
+
+# 输出目录（相对于项目根目录）
+output_dir: docs/architecture
+
+# 符号索引类型：auto, sqlite, serena
+# - auto: 自动选择（优先 Serena，降级到 SQLite）
+# - sqlite: 强制使用 SQLite
+# - serena: 强制使用 Serena MCP（需要 Serena 可用）
+index_type: auto
+
+# 是否包含测试文件
+include_tests: true

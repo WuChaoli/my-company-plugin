@@ -1,0 +1,24 @@
+{
+  "name": "my-company",
+  "version": "0.1.0",
+  "description": "Comprehensive workflow toolkit for managing company structure, employees, development workflows, and project automation. Includes agents for code exploration and documentation, skills for various development practices, and commands for project management.",
+  "author": {
+    "name": "wuchaoli",
+    "email": ""
+  },
+  "components": {
+    "agents": "agents/",
+    "commands": "commands/",
+    "skills": "skills/",
+    "hooks": "hooks/",
+    "mcp": ".mcp.json",
+    "rules": "rules/"
+  },
+  "keywords": [
+    "workflow",
+    "company-management",
+    "development-toolkit",
+    "automation",
+    "project-management"
+  ]
+}
