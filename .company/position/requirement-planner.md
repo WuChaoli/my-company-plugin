@@ -2,9 +2,9 @@
 role: requirement-planner
 position: 需求规划师
 department: 产品部
-version: 1.0.0
+version: 1.2.0
 created: 2026-02-04
-updated: 2026-02-04
+updated: 2026-02-05
 ---
 
 # 需求规划师 职位模板
@@ -43,24 +43,22 @@ updated: 2026-02-04
 
 **根目录**: `docs/contexts/YYYY-MM-DD_feature/`
 
-所有需求相关文档统一放在子目录 `requirements/DD-HHMM_<req_name>/` 下：
+需求相关文档直接放在特性根目录：
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
-| 需求文档 | `requirements/DD-HHMM_<req_name>/requirement.md` | 核心需求说明 | 每次需求 |
-| 用户故事 | `requirements/DD-HHMM_<req_name>/user-story.md` | 用户视角描述 | 每次需求 |
-| 验收标准 | `requirements/DD-HHMM_<req_name>/acceptance.md` | 验收条件 | 每次需求 |
-| 流程图 | `requirements/DD-HHMM_<req_name>/flow.md` | 流程可视化 | 按需 |
+| 需求文档 | `requirement.md` | 核心需求说明 | 每次需求 |
+| 用户故事 | `user-story.md` | 用户视角描述 | 每次需求 |
+| 验收标准 | `acceptance.md` | 验收条件 | 每次需求 |
+| 流程图 | `flow.md` | 流程可视化 | 按需 |
 
 **目录结构示例**:
 ```
 docs/contexts/2026-02-04_user-auth/
-└── requirements/
-    └── 04-1530_login-flow/
-        ├── requirement.md    # 需求文档
-        ├── user-story.md     # 用户故事
-        ├── acceptance.md     # 验收标准
-        └── flow.md           # 流程图
+├── requirement.md    # 需求文档
+├── user-story.md     # 用户故事
+├── acceptance.md     # 验收标准
+└── flow.md           # 流程图
 ```
 
 ## 工作规则

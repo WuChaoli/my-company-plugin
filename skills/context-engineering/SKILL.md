@@ -61,7 +61,7 @@ python scripts/init_context.py user-authentication --assignee developer --branch
 脚本会创建：
 1. **上下文目录**：`docs/contexts/YYYY-MM-DD_feature-name/`
 2. **元数据文件**：`.context.json`，包含状态、时间戳、负责人等
-3. **初始文档**：
+3. **初始文档**（功能级）：
    - `requirements.md` - 需求文档
    - `architecture-changes.md` - 架构变更
    - `feature-spec.md` - 功能规格
@@ -69,6 +69,8 @@ python scripts/init_context.py user-authentication --assignee developer --branch
    - `test-plan.md` - 测试计划
    - `todos.md` - 任务清单（可选）
 4. **索引更新**：将上下文添加到 `.contexts-index.json`
+
+**注意**：所有职位相关文档直接放在特性根目录，无需创建子目录层级。
 
 ### 上下文 ID 格式
 
@@ -162,17 +164,57 @@ python scripts/archive_context.py 2026-02-01_user-authentication
 ### 静态文档 (`docs/static/`)
 
 按功能模块组织的长期维护文档：
-- `architecture/` - 系统架构、组件设计、ADR
-- `user-journey/` - 用户旅程和交互流程
-- `data-flow/` - 数据流和处理逻辑
-- `api/` - API 接口文档
+- `architecture/` - 系统架构/技术选型
+- `design/` - 模块设计/数据流
+- `api/` - 接口定义/协议
+- `guide/` - 使用/部署手册
+- `spec/` - 需求规格/验收
 
-### 动态文档 (`docs/contexts/[contextId]/`)
+### 动态文档 (`docs/contexts/YYYY-MM-DD_feature/`)
 
-按时间 + 功能组织的特定功能文档：
-- `requirements.md` - 需求文档
+**根目录概念**：
+- 明确说明根目录：`docs/contexts/YYYY-MM-DD_feature/`
+- 所有文档直接放在根目录，无需子目录层级
+
+**职位相关文档**（直接放在根目录）:
+- 需求规划师：`requirement.md`, `user-story.md`, `acceptance.md`, `flow.md`
+- 架构师：`design.md`, `diff.md`, `sync.md`
+- TDD开发工程师：`task-breakdown.md`, `test-cases.md`, `dev-log.md`, `test-report.md`
+- 重构工程师：`baseline.md`, `plan.md`, `progress.md`, `comparison.md`, `summary.md`, `tests/`
+- 测试工程师：`test-cases.md`, `execution-log.md`, `error-analysis.md`, `summary.md`
+
+**完整示例**:
+```
+docs/contexts/YYYY-MM-DD_feature/
+├── requirements.md              # 功能需求
+├── requirement.md               # 需求文档（需求规划师）
+├── user-story.md                # 用户故事
+├── acceptance.md                # 验收标准
+├── flow.md                      # 流程图
+├── design.md                    # 架构设计
+├── diff.md                      # 差异分析
+├── sync.md                      # 同步报告
+├── task-breakdown.md            # 任务拆解
+├── test-cases.md                # 测试用例
+├── dev-log.md                   # 开发日志
+├── test-report.md               # 测试报告
+├── baseline.md                  # 重构基线
+├── refactor-plan.md             # 重构方案
+├── progress.md                  # 进度跟踪
+├── comparison.md                # 测试对比
+├── tests/                       # 测试代码目录
+│   ├── test_*.py
+│   └── fixtures/
+├── execution-log.md             # 执行日志
+├── error-analysis.md            # 错误分析
+├── summary.md                   # 总结文档
+└── .context.json                # 元数据
+```
+
+**文档说明**：
+- `requirements.md` - 功能需求文档（功能级）
 - `architecture-changes.md` - 此功能的架构变更
-- `feature-spec.md` - 功能规格
+- `feature-spec.md` - 功能规格说明
 - `plan.md` - 实施计划
 - `todos.md` - 任务清单
 - `test-plan.md` - 测试计划

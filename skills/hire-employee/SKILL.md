@@ -32,6 +32,7 @@ description: 从职位模板创建员工档案。当用户提到"招聘员工"�
 ls .company/position/
 
 # 查看可用人格
+
 ls .company/personality/
 ```
 
@@ -43,21 +44,21 @@ ls .company/personality/
 
 ### 3. 生成员工ID
 
-格式：`E[YYYY][MMDD][序号]`
+**命名格式**：`[职位]-[姓名]`
 
-```bash
-# 查看现有员工
-ls .company/employee/ 2>/dev/null | grep '^E' | sort
-```
+**示例**：
+- 测试工程师张三：`test-engineer-张三`
+- 架构师李四：`architect-李四`
+- 需求规划师造梦：`requirement-planner-造梦`
 
 ### 4. 创建档案
 
-**文件位置**：`.company/employee/[员工ID].md`
+**文件位置**：`.company/employee/[职位]-[姓名].md`
 
 **结构**（引用式，约200字）：
 ```yaml
 ---
-employee_id: E2026020201
+employee_id: test-engineer-张三
 name: 张三
 gender: 男
 position: test-engineer
@@ -69,7 +70,7 @@ status: active
 # 张三 - 测试工程师
 
 ## 基本信息
-- **ID**: E2026020201
+- **ID**: test-engineer-张三
 - **姓名**: 张三
 - **性别**: 男
 - **职位**: 测试工程师 ([test-engineer](.company/position/test-engineer.md))
@@ -105,14 +106,14 @@ status: active
 **添加员工记录**：
 ```json
 {
-  "employee_id": "E2026020201",
+  "employee_id": "test-engineer-张三",
   "name": "张三",
   "position": "test-engineer",
   "personality": "analytical-type",
   "hire_date": "2026-02-02",
   "status": "active",
   "command": "load:test-engineer-张三",
-  "file": ".company/employee/E2026020201.md"
+  "file": ".company/employee/test-engineer-张三.md"
 }
 ```
 
@@ -143,7 +144,7 @@ description: 激活员工张三（测试工程师）。使用该员工的档案�
 
 ## 第1步：读取员工基本信息
 
-请先阅读员工档案：[.company/employee/E2026020201.md](.company/employee/E2026020201.md)
+请先阅读员工档案：[.company/employee/test-engineer-张三.md](.company/employee/test-engineer-张三.md)
 
 ## 第2步：读取职位配置
 
@@ -199,14 +200,14 @@ description: 激活员工张三（测试工程师）。使用该员工的档案�
   "last_updated": "2026-02-04",
   "employees": [
     {
-      "employee_id": "E2026020201",
+      "employee_id": "test-engineer-张三",
       "name": "张三",
       "position": "test-engineer",
       "personality": "analytical-type",
       "hire_date": "2026-02-02",
       "status": "active",
       "command": "load:test-engineer-张三",
-      "file": ".company/employee/E2026020201.md"
+      "file": ".company/employee/test-engineer-张三.md"
     }
   ]
 }
@@ -225,7 +226,7 @@ cat .company/employee/.employees-registry.json | jq '.employees'
 当员工离职时，更新配置文件中的 `status` 字段为 `"inactive"`。
 
 ### 配置文件字段说明
-- `employee_id`: 员工唯一标识符
+- `employee_id`: 员工唯一标识符（格式：职位-姓名）
 - `name`: 员工姓名
 - `position`: 职位（对应 .company/position/ 中的职位模板）
 - `personality`: 人格类型（对应 .company/personality/ 中的人格模板）
@@ -260,23 +261,37 @@ cat .company/employee/.employees-registry.json | jq '.employees'
 - ✓ 档案文件简洁（200字 vs 2000字）
 - ✓ 单一数据源，避免不一致
 
-## 命令命名规范
+## 命名规范
 
-**基本格式**：`load:[职位英文名]-[姓名]`
+### 员工ID格式
+**格式**：`[职位]-[姓名]`
 
-**姓名部分规则**：
-- **中文名**：直接使用中文（如：`张三`、`王麻子`、`李四`）
-- **英文名**：使用小写+连字符（如：`john-smith`、`mary-jane`）
+**规则**：
+- 职位使用职位模板的英文名称（如：test-engineer、architect）
+- 姓名保持原样（中文或英文）
 
 **示例**：
-- `load:test-engineer-张三` - 测试工程师张三（中文名）
-- `load:test-engineer-王麻子` - 测试工程师王麻子（中文名）
-- `load:architect-李四` - 架构师李四（中文名）
-- `load:product-manager-john-smith` - 产品经理John Smith（英文名）
+- `test-engineer-张三` - 测试工程师张三
+- `architect-李四` - 架构师李四
+- `requirement-planner-造梦` - 需求规划师造梦
+- `tdd-developer-鲁班` - TDD开发工程师鲁班
 
-**文件命名**：
-- 中文名：`load-test-engineer-张三.md`
-- 英文名：`load-test-engineer-john-smith.md`
+### 激活命令格式
+**格式**：`load:[职位]-[姓名]`
+
+**示例**：
+- `load:test-engineer-张三` - 激活测试工程师张三
+- `load:architect-师爷` - 激活架构师师爷
+- `load:refactor-engineer-罗辑` - 激活重构工程师罗辑
+
+### 文件命名
+**命令文件**：`load-[职位]-[姓名].md`
+- `load-test-engineer-张三.md`
+- `load-architect-师爷.md`
+
+**员工档案**：`[职位]-[姓名].md`
+- `test-engineer-张三.md`
+- `architect-师爷.md`
 
 ## 相关资源
 
@@ -287,4 +302,4 @@ cat .company/employee/.employees-registry.json | jq '.employees'
 
 ---
 
-**版本**: 1.0.0 | **更新**: 2026-02-02
+**版本**: 1.1.0 | **更新**: 2026-02-04

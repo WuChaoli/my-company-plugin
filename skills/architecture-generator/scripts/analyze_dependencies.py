@@ -31,6 +31,19 @@ from utils import (
     is_typescript_project,
 )
 
+# Try to import enhanced AST analyzer
+try:
+    import sys
+    # Add scripts directory to path
+    scripts_dir = Path(__file__).parent
+    if str(scripts_dir) not in sys.path:
+        sys.path.insert(0, str(scripts_dir))
+
+    from enhanced_ast_analyzer import EnhancedASTAnalyzer
+    ENHANCED_AST_AVAILABLE = True
+except ImportError:
+    ENHANCED_AST_AVAILABLE = False
+
 
 class DependencyAnalyzer:
     """依赖关系分析器（Phase 2：支持分层）"""
@@ -112,9 +125,34 @@ class DependencyAnalyzer:
         self.file_dependencies[rel_path] = dependencies
 
     def _analyze_python_file(self, file_path: Path) -> Set[str]:
-        """分析 Python 文件的 import 依赖"""
+        """分析 Python 文件的 import 依赖（使用增强提取器）"""
         dependencies = set()
 
+        # Try enhanced extraction first
+        if ENHANCED_AST_AVAILABLE:
+            try:
+                analyzer = EnhancedASTAnalyzer(self.root_path)
+                extracted_data = analyzer.analyze_file(file_path)
+
+                if 'error' not in extracted_data:
+                    # Extract all dependency types
+                    all_deps = extracted_data.get('dependencies', {})
+
+                    # Import dependencies
+                    for dep in all_deps.get('imports', []):
+                        module = dep.get('module_path') if dep.get('module_path') else dep.get('name')
+                        if module:
+                            dependencies.add(module.split('.')[0])
+
+                    # Could also track calls and instantiations
+                    # For basic dependency graph, we focus on imports
+
+                    return dependencies
+            except Exception:
+                # Fallback to basic analysis
+                pass
+
+        # Fallback to basic analysis
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 source = f.read()

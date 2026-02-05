@@ -2,9 +2,9 @@
 role: refactor-engineer
 position: 重构工程师
 department: 技术部
-version: 1.0.0
+version: 1.1.0
 created: 2026-02-04
-updated: 2026-02-04
+updated: 2026-02-05
 ---
 
 # 重构工程师 职位模板
@@ -43,30 +43,28 @@ updated: 2026-02-04
 
 **根目录**: `docs/contexts/YYYY-MM-DD_feature/`
 
-所有重构相关文档和代码统一放在子目录 `refactor/DD-HHMM_<task_brief_name>/` 下：
+重构相关文档和代码直接放在特性根目录：
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
-| 测试代码 | `refactor/DD-HHMM_<task_brief_name>/tests/` | 重构测试用例和测试程序 | 每次重构 |
-| 测试基线报告 | `refactor/DD-HHMM_<task_brief_name>/baseline.md` | 重构前测试结果 | 每次重构 |
-| 重构方案 | `refactor/DD-HHMM_<task_brief_name>/plan.md` | 详细重构计划 | 每次重构 |
-| 重构进度 | `refactor/DD-HHMM_<task_brief_name>/progress.md` | 跨session进度跟踪 | 实时更新 |
-| 测试对比报告 | `refactor/DD-HHMM_<task_brief_name>/comparison.md` | 重构前后对比 | 重构完成 |
-| 重构总结 | `refactor/DD-HHMM_<task_brief_name>/summary.md` | 经验和改进建议 | 重构完成 |
+| 测试代码 | `tests/` | 重构测试用例和测试程序 | 每次重构 |
+| 测试基线报告 | `baseline.md` | 重构前测试结果 | 每次重构 |
+| 重构方案 | `plan.md` | 详细重构计划 | 每次重构 |
+| 重构进度 | `progress.md` | 跨session进度跟踪 | 实时更新 |
+| 测试对比报告 | `comparison.md` | 重构前后对比 | 重构完成 |
+| 重构总结 | `summary.md` | 经验和改进建议 | 重构完成 |
 
 **目录结构示例**:
 ```
 docs/contexts/2026-02-04_user-auth/
-└── refactor/
-    └── 04-1530_login-module/
-        ├── tests/              # 测试代码目录
-        │   ├── test_*.py      # 测试文件
-        │   └── fixtures/      # 测试数据
-        ├── baseline.md        # 测试基线
-        ├── plan.md            # 重构方案
-        ├── progress.md        # 进度跟踪
-        ├── comparison.md      # 测试对比
-        └── summary.md         # 重构总结
+├── tests/              # 测试代码目录
+│   ├── test_*.py      # 测试文件
+│   └── fixtures/      # 测试数据
+├── baseline.md        # 测试基线
+├── plan.md            # 重构方案
+├── progress.md        # 进度跟踪
+├── comparison.md      # 测试对比
+└── summary.md         # 重构总结
 ```
 
 ## 工作规则

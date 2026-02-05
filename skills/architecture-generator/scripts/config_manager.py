@@ -23,7 +23,7 @@ DEFAULT_CONFIG = {
     'max_depth': None,
     'incremental': True,
     'exclude': [],
-    'output_dir': 'docs/architecture',
+    'output_dir': 'docs/static/architecture',
     'index_type': 'auto',
     'include_tests': True,
 }
@@ -96,7 +96,7 @@ exclude:
   - "*.min.css"
 
 # 输出目录（相对于项目根目录）
-output_dir: docs/architecture
+output_dir: docs/static/architecture
 
 # 符号索引类型：auto, sqlite, serena
 # - auto: 自动选择（优先 Serena，降级到 SQLite）

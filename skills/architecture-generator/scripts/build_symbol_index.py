@@ -26,6 +26,19 @@ from utils import (
     detect_file_type,
 )
 
+# Try to import enhanced AST analyzer
+try:
+    import sys
+    # Add scripts directory to path
+    scripts_dir = Path(__file__).parent
+    if str(scripts_dir) not in sys.path:
+        sys.path.insert(0, str(scripts_dir))
+
+    from enhanced_ast_analyzer import EnhancedASTAnalyzer
+    ENHANCED_AST_AVAILABLE = True
+except ImportError:
+    ENHANCED_AST_AVAILABLE = False
+
 
 class SymbolIndexBuilder:
     """符号索引构建器（Phase 2：支持 Serena 集成）"""
@@ -148,7 +161,85 @@ class SymbolIndexBuilder:
             self._index_js_file(file_path, rel_path)
 
     def _index_python_file(self, file_path: Path, rel_path: str):
-        """索引 Python 文件"""
+        """索引 Python 文件（使用增强提取器）"""
+        # Try enhanced extraction first
+        if ENHANCED_AST_AVAILABLE:
+            try:
+                analyzer = EnhancedASTAnalyzer(self.root_path, self.db_path)
+                extracted_data = analyzer.analyze_file(file_path)
+
+                if 'error' not in extracted_data:
+                    # Use enhanced extraction results
+                    self._index_enhanced_data(extracted_data, rel_path)
+                    return
+            except Exception as e:
+                print(f"   ⚠ Enhanced extraction failed for {rel_path}: {e}, falling back to basic")
+
+        # Fallback to basic extraction
+        self._index_python_file_basic(file_path, rel_path)
+
+    def _index_enhanced_data(self, extracted_data: Dict, rel_path: str):
+        """索引增强提取的数据"""
+        # Index file symbol
+        file_id = self._add_symbol(
+            name=Path(rel_path).name,
+            kind='file',
+            file_path=rel_path,
+            line_number=1,
+            end_line_number=extracted_data.get('line_count', 1),
+            metadata=json.dumps(extracted_data)
+        )
+
+        # Index classes
+        for class_data in extracted_data.get('classes', []):
+            class_id = self._add_symbol(
+                name=class_data['name'],
+                kind='class',
+                file_path=rel_path,
+                line_number=class_data['line_number'],
+                end_line_number=class_data['end_line_number'],
+                parent_id=file_id,
+                metadata=json.dumps(class_data)
+            )
+
+            # Index methods
+            for method in class_data.get('methods', []):
+                self._add_symbol(
+                    name=method['name'],
+                    kind='function',
+                    file_path=rel_path,
+                    line_number=method['line_number'],
+                    end_line_number=method['end_line_number'],
+                    parent_id=class_id,
+                    metadata=json.dumps(method)
+                )
+
+            # Index nested classes
+            for nested_class in class_data.get('nested_classes', []):
+                nested_id = self._add_symbol(
+                    name=nested_class['name'],
+                    kind='class',
+                    file_path=rel_path,
+                    line_number=nested_class['line_number'],
+                    end_line_number=nested_class['end_line_number'],
+                    parent_id=class_id,
+                    metadata=json.dumps(nested_class)
+                )
+
+        # Index top-level functions
+        for func_data in extracted_data.get('functions', []):
+            self._add_symbol(
+                name=func_data['name'],
+                kind='function',
+                file_path=rel_path,
+                line_number=func_data['line_number'],
+                end_line_number=func_data['end_line_number'],
+                parent_id=file_id,
+                metadata=json.dumps(func_data)
+            )
+
+    def _index_python_file_basic(self, file_path: Path, rel_path: str):
+        """基本 Python 文件索引（回退方案）"""
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 source = f.read()

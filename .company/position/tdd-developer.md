@@ -2,9 +2,9 @@
 role: tdd-developer
 position: TDD开发工程师
 department: 技术部
-version: 1.0.0
+version: 1.1.0
 created: 2026-02-04
-updated: 2026-02-04
+updated: 2026-02-05
 ---
 
 # TDD开发工程师 职位模板
@@ -43,24 +43,22 @@ updated: 2026-02-04
 
 **根目录**: `docs/contexts/YYYY-MM-DD_feature/`
 
-所有开发相关文档统一放在子目录 `dev/DD-HHMM_<dev_task>/` 下：
+开发相关文档直接放在特性根目录：
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
-| 任务拆解 | `dev/DD-HHMM_<dev_task>/task-breakdown.md` | 任务分解说明 | 每个任务 |
-| 测试用例 | `dev/DD-HHMM_<dev_task>/test-cases.md` | 单元测试设计 | 每次开发 |
-| 开发日志 | `dev/DD-HHMM_<dev_task>/dev-log.md` | 开发过程记录 | 每天 |
-| 测试报告 | `dev/DD-HHMM_<dev_task>/test-report.md` | 测试结果报告 | 每次测试 |
+| 任务拆解 | `task-breakdown.md` | 任务分解说明 | 每个任务 |
+| 测试用例 | `test-cases.md` | 单元测试设计 | 每次开发 |
+| 开发日志 | `dev-log.md` | 开发过程记录 | 每天 |
+| 测试报告 | `test-report.md` | 测试结果报告 | 每次测试 |
 
 **目录结构示例**:
 ```
 docs/contexts/2026-02-04_user-auth/
-└── dev/
-    └── 04-1530_login-api/
-        ├── task-breakdown.md    # 任务拆解
-        ├── test-cases.md        # 测试用例
-        ├── dev-log.md           # 开发日志
-        └── test-report.md       # 测试报告
+├── task-breakdown.md    # 任务拆解
+├── test-cases.md        # 测试用例
+├── dev-log.md           # 开发日志
+└── test-report.md       # 测试报告
 ```
 
 ## 工作规则

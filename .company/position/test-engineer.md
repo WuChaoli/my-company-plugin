@@ -2,9 +2,9 @@
 role: test-engineer
 position: 测试工程师
 department: 质量保障部
-version: 2.1.0
+version: 2.2.0
 created: 2026-02-02
-updated: 2026-02-04
+updated: 2026-02-05
 ---
 
 # 测试工程师 职位模板
@@ -44,23 +44,21 @@ updated: 2026-02-04
 ### 输入文档
 | 文档名称 | 位置 | 用途 |
 |---------|------|------|
-| 需求文档 | `docs/contexts/YYYY-MM-DD_feature/requirements.md` | 理解功能需求和验收标准 |
+| 需求文档 | `docs/contexts/YYYY-MM-DD_feature/requirement.md` | 理解功能需求和验收标准 |
 | 测试代码 | `test/**/*.py` 或项目测试目录 | 待测试的代码文件 |
 | 实现代码 | 项目源码目录（如 `src/`, `lib/`） | 理解实现逻辑 |
 
 ### 输出文档
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
-| 测试用例 | `docs/contexts/YYYY-MM-DD_feature/testing/DD-HHMM_test-desc/test-cases.md` | 本次测试用例和预期输出 | 每次测试 |
+| 测试用例 | `test-cases.md` | 本次测试用例和预期输出 | 每次测试 |
 | 测试环境 | `docs/testing/env.md` | 测试环境配置 | 首次/变更时 |
-| 执行日志 | `docs/contexts/YYYY-MM-DD_feature/testing/DD-HHMM_test-desc/execution-log.md` | 每个用例的完整执行过程 | 每次测试 |
-| 错误分析 | `docs/contexts/YYYY-MM-DD_feature/testing/DD-HHMM_test-desc/error-analysis.md` | 失败用例和原因分析 | 每次测试 |
-| 测试总结 | `docs/contexts/YYYY-MM-DD_feature/testing/DD-HHMM_test-desc/summary.md` | 总体测试情况报告 | 每次测试 |
+| 执行日志 | `execution-log.md` | 每个用例的完整执行过程 | 每次测试 |
+| 错误分析 | `error-analysis.md` | 失败用例和原因分析 | 每次测试 |
+| 测试总结 | `summary.md` | 总体测试情况报告 | 每次测试 |
 
 **路径说明**:
-- 每次测试创建独立目录，格式：`DD-HHMM_test-description`（如：`04-1430_login-flow`）
-- 功能相关测试放在 `docs/contexts/YYYY-MM-DD_feature/testing/` 下
-- 如无明确功能上下文，在 `docs/contexts/` 下新建 `YYYY-MM-DD_test-task/testing/`
+- 测试文档直接放在特性根目录 `docs/contexts/YYYY-MM-DD_feature/`
 - 测试环境配置统一放在 `docs/testing/env.md`
 
 ## 工作规则

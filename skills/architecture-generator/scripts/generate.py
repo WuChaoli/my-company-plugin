@@ -85,7 +85,7 @@ def generate_architecture_docs(
 
     Args:
         project_path: 项目根目录
-        output_dir: 输出目录（默认: docs/architecture/）
+        output_dir: 输出目录（默认: docs/static/architecture/）
         gitignore_path: .gitignore 文件路径
         max_depth: 最大扫描深度
         node_threshold: 依赖图节点数阈值（默认: 25）
@@ -108,7 +108,7 @@ def generate_architecture_docs(
 
     # 设置输出目录
     if output_dir is None:
-        output_dir = project_path / "docs" / "architecture"
+        output_dir = project_path / "docs" / "static" / "architecture"
     else:
         output_dir = output_dir.resolve()
 
@@ -335,7 +335,7 @@ def main():
         "--output", "-o",
         type=Path,
         default=None,
-        help="Output directory (default: docs/architecture/)"
+        help="Output directory (default: docs/static/architecture/)"
     )
     parser.add_argument(
         "--gitignore",
