@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "last_updated": "2026-02-04",
+  "last_updated": "2026-02-06",
   "employees": [
     {
       "employee_id": "test-engineer-王麻子",
@@ -51,6 +51,16 @@
       "status": "active",
       "command": "load:tdd-developer-鲁班",
       "file": ".company/employee/tdd-developer-鲁班.md"
+    },
+    {
+      "employee_id": "archive-assistant-文员",
+      "name": "文员",
+      "position": "archive-assistant",
+      "personality": "systematic-type",
+      "hire_date": "2026-02-06",
+      "status": "active",
+      "command": "load:archive-assistant-文员",
+      "file": ".company/employee/archive-assistant-文员.md"
     }
   ]
 }
