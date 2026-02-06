@@ -35,6 +35,18 @@ department: [department-name]
 version: 1.0.0
 created: [YYYY-MM-DD]
 updated: [YYYY-MM-DD]
+skills:
+  fixed:
+    - doc-location-manager
+  role_specific:
+    - [skill-1]
+    - [skill-2]
+agents:
+  recommended:
+    - name: [agent-name-1]
+      purpose: [用途说明]
+    - name: [agent-name-2]
+      purpose: [用途说明]
 ---
 
 # [职位名称] 职位模板
@@ -56,46 +68,48 @@ updated: [YYYY-MM-DD]
 **必需工具**: Read, Write, [其他]
 **可选工具**: Bash, Grep, Glob, [其他]
 
-## 技能
-**固定加载**: doc-location-manager
-**角色专属**: [技能1], [技能2]
-
-## 可用Agents
-**推荐使用**:
-- **[agent1]**: [用途说明]
-- **[agent2]**: [用途说明]
-- **[agent3]**: [用途说明]
-
 ## 文档产出
 **根目录**: `docs/contexts/YYYY-MM-DD_feature/`
 
-所有[职位]相关文档统一放在子目录 `[subdir]/DD-HHMM_<task_brief_name>/` 下：
+所有[职位]相关文档直接放在特性根目录：
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
-| [文档1] | `[subdir]/DD-HHMM_<task_name>/file1.md` | [用途] | [频率] |
-| [文档2] | `[subdir]/DD-HHMM_<task_name>/file2.md` | [用途] | [频率] |
+| task-todo.md | `task-todo.md` | 跨session任务跟踪 | 实时更新 |
+| [文档1] | `file1.md` | [用途] | [频率] |
+| [文档2] | `file2.md` | [用途] | [频率] |
+
+**task-todo.md 格式**:
+```markdown
+# 任务清单
+
+## 待办任务
+- [ ] 任务1描述
+- [ ] 任务2描述
+
+## 已完成
+- [x] 任务A - 完成时间: YYYY-MM-DD HH:MM
+```
 
 **目录结构示例**:
 ```
 docs/contexts/YYYY-MM-DD_feature/
-└── [subdir]/
-    └── DD-HHMM_<task_name>/
-        ├── file1.md
-        └── file2.md
+├── task-todo.md       # 任务清单（必需）
+├── file1.md
+└── file2.md
 ```
 
 ## 工作规则
 1. [规则1] - [具体可执行]
 2. [规则2] - [具体可执行]
-3. [规则3] - [具体可执行]
+3. 每次完成任务后在task-todo.md中打钩并标注完成时间
 4. [规则4] - [具体可执行]
 
 ## 工作流程
 ### 标准流程
 1. **[步骤1]**: [说明]
 2. **[步骤2]**: [说明]
-3. **[步骤3]**: [说明]
+3. **[步骤3]**: 更新task-todo.md打钩
 
 ### 特殊场景
 - **[场景1]**: [处理方式]
@@ -105,8 +119,9 @@ docs/contexts/YYYY-MM-DD_feature/
 
 **每次完成任务后，必须逐项检查**：
 
+- [ ] **task-todo.md已更新**: 完成的任务已打钩并标注完成时间
 - [ ] **文档产出完整**: 所有必需文档已创建并更新到正确位置
-- [ ] **文档路径正确**: 使用 `docs/contexts/YYYY-MM-DD_feature/[subdir]/DD-HHMM_<task>/` 格式
+- [ ] **文档路径正确**: 使用 `docs/contexts/YYYY-MM-DD_feature/` 格式
 - [ ] **质量标准达标**: 代码通过测试、文档符合规范、设计经过评审
 - [ ] **协作已完成**: 已通知相关人员、交接文档已准备
 - [ ] **技术债务记录**: 新增的技术债务已记录到项目债务清单
@@ -193,33 +208,61 @@ docs/contexts/YYYY-MM-DD_feature/
 **必需**:
 - `doc-location-manager` - 文档位置管理
 
-**开发**:
-- `tdd-workflow` - TDD开发
-- `code-review` - 代码审查
-- `commit` - Git提交
+**工作流管理**:
+- `context-engineering` - 上下文工程（文档归档、上下文管理）
+- `brainstorming` - 创意思考和需求探索
+- `checkpoint` - 开发检查点管理
+- `session-compact` - 会话压缩和清理
 
-**架构**:
-- `c4-architecture` - C4架构图
-- `mermaid-diagrams` - 图表绘制
+**开发流程**:
+- `tdd-workflow` - 测试驱动开发（TDD）
+- `requesting-code-review` - 请求代码审查
+- `commit-commands:commit` - Git提交
+- `commit-commands:commit-push-pr` - 提交、推送并创建PR
 
-**产品**:
-- `code-new-requirement` - 需求分析
+**架构与设计**:
+- `c4-architecture` - C4架构图生成
+- `mermaid-diagrams` - Mermaid图表绘制
+- `architecture-generator` - 自动生成项目架构文档
+- `using-git-worktrees` - Git工作树管理
+
+**Agent相关**:
+- `agent-creator` - 创建自定义Agent
+- `agent-usage-guide` - Agent使用规范指南
+- `personality-creator` - 创建人格模板
+
+**插件开发**:
+- `plugin-dev:plugin-structure` - 插件结构指南
+- `plugin-dev:command-development` - 命令开发
+- `plugin-dev:skill-development` - 技能开发
+- `plugin-dev:agent-development` - Agent开发
+- `plugin-dev:hook-development` - Hook开发
+- `plugin-dev:mcp-integration` - MCP集成
+
+**规则与规范**:
+- `rule-creator` - 创建行为规范和工作流规则
+
+**LSP配置**:
+- `lsp-setup` - LSP安装、配置和使用指南
+
+**其他工具**:
+- `permission-usage` - 权限设置配置指南
+- `fire-employee` - 删除员工档案
 
 ## 字数分配
 
 总字数控制在800字以内：
 
-- YAML frontmatter: ~50字
+- YAML frontmatter: ~80字（包含 skills 和 agents）
 - 概述: ~30字
 - 职责: ~100字
 - 工具: ~50字
-- 技能: ~40字
 - 文档产出: ~120字
 - 工作规则: ~80字
 - 工作流程: ~120字
 - 执行后检查清单: ~100字
 - 质量检查: ~60字
-- 协作接口: ~50字
+- 协作接口: ~60字
 - **总计**: ~800字
 
 ## 快速开始
@@ -234,10 +277,12 @@ docs/contexts/YYYY-MM-DD_feature/
 
 1. **字数限制**: 800字以内
 2. **doc-location-manager必需**: 所有职位模板都必须包含
-3. **文档路径规范**: 使用相对路径，明确根目录和子目录
+3. **文档路径规范**: 使用相对路径，明确根目录
 4. **规则可执行性**: 规则要具体可执行
-5. **执行后检查**: 每次任务完成后必须执行检查清单
-6. **模板复用**: 创建员工时从模板复制
+5. **task-todo.md必需**: 每个职位模板必须包含任务跟踪文档
+6. **每次任务完成后打钩**: 更新task-todo.md并标注完成时间
+7. **执行后检查**: 每次任务完成后必须执行检查清单
+8. **模板复用**: 创建员工时从模板复制
 
 ## 相关资源
 
@@ -249,5 +294,5 @@ docs/contexts/YYYY-MM-DD_feature/
 
 ---
 
-**版本**: 2.2.0 | **更新**: 2026-02-04
-**变更**: 新增执行后检查清单功能
+**版本**: 2.4.0 | **更新**: 2026-02-06
+**变更**: 新增 skills 和 agents 元数据到 YAML frontmatter，更新模板结构和章节编号

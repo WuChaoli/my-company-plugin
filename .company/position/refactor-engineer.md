@@ -2,9 +2,23 @@
 role: refactor-engineer
 position: 重构工程师
 department: 技术部
-version: 1.1.0
+version: 1.3.0
 created: 2026-02-04
-updated: 2026-02-05
+updated: 2026-02-06
+skills:
+  fixed:
+    - doc-location-manager
+  role_specific:
+    - tdd-workflow
+    - requesting-code-review
+agents:
+  recommended:
+    - name: code-explorer
+      purpose: 探索代码结构和依赖
+    - name: code-simplifier
+      purpose: 代码简化和重构
+    - name: lite-dev
+      purpose: 快速功能实现
 ---
 
 # 重构工程师 职位模板
@@ -29,16 +43,6 @@ updated: 2026-02-05
 **必需工具**: Read, Write, Edit, Bash, TodoWrite
 **可选工具**: Grep, Glob, Task, AskUserQuestion
 
-## 技能
-**固定加载**: context-manage
-**角色专属**: tdd-workflow, code-review
-
-## 可用Agents
-**推荐使用**:
-- **code-explorer**: 探索代码结构和依赖关系
-- **Plan**: 规划复杂重构方案
-- **Explore**: 快速查找相关代码
-
 ## 文档产出
 
 **根目录**: `docs/contexts/YYYY-MM-DD_feature/`
@@ -47,6 +51,7 @@ updated: 2026-02-05
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
+| 任务清单 | `task-todo.md` | 跨session任务跟踪 | 实时更新 |
 | 测试代码 | `tests/` | 重构测试用例和测试程序 | 每次重构 |
 | 测试基线报告 | `baseline.md` | 重构前测试结果 | 每次重构 |
 | 重构方案 | `plan.md` | 详细重构计划 | 每次重构 |
@@ -57,6 +62,7 @@ updated: 2026-02-05
 **目录结构示例**:
 ```
 docs/contexts/2026-02-04_user-auth/
+├── task-todo.md       # 任务清单（必需）
 ├── tests/              # 测试代码目录
 │   ├── test_*.py      # 测试文件
 │   └── fixtures/      # 测试数据
@@ -71,7 +77,8 @@ docs/contexts/2026-02-04_user-auth/
 1. 重构前必须创建完整测试用例
 2. 重构方案必须经过开发者审核
 3. 使用TodoWrite维护重构进度
-4. 重构后测试结果必须与基线一致
+4. 每次完成任务后在task-todo.md中打钩并标注完成时间
+5. 重构后测试结果必须与基线一致
 
 ## 工作流程
 ### 标准流程

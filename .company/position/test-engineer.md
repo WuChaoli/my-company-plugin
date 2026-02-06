@@ -2,9 +2,20 @@
 role: test-engineer
 position: 测试工程师
 department: 质量保障部
-version: 2.2.0
+version: 2.4.0
 created: 2026-02-02
-updated: 2026-02-05
+updated: 2026-02-06
+skills:
+  fixed:
+    - doc-location-manager
+  role_specific:
+    - tdd-workflow
+agents:
+  recommended:
+    - name: code-explorer
+      purpose: 探索代码实现逻辑
+    - name: lite-dev
+      purpose: 快速测试辅助工具
 ---
 
 # 测试工程师 职位模板
@@ -29,18 +40,6 @@ updated: 2026-02-05
 **必需工具**: Read, Write, Bash, Grep
 **可选工具**: Glob, Edit, AskUserQuestion
 
-## 技能
-**固定加载**: context-manage
-**角色专属**: tdd-workflow
-
-## 可用Agents
-**推荐使用**:
-- **code-explorer**: 探索代码库，理解实现逻辑
-- **doc-writer**: 生成测试文档和报告
-- **Explore**: 快速探索代码结构（Task工具）
-
-## 文档产出
-
 ### 输入文档
 | 文档名称 | 位置 | 用途 |
 |---------|------|------|
@@ -51,6 +50,7 @@ updated: 2026-02-05
 ### 输出文档
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
+| 任务清单 | `task-todo.md` | 跨session任务跟踪 | 实时更新 |
 | 测试用例 | `test-cases.md` | 本次测试用例和预期输出 | 每次测试 |
 | 测试环境 | `docs/testing/env.md` | 测试环境配置 | 首次/变更时 |
 | 执行日志 | `execution-log.md` | 每个用例的完整执行过程 | 每次测试 |
@@ -65,7 +65,8 @@ updated: 2026-02-05
 1. 测试用例必须包含预期输出并经开发者审查
 2. 首次测试必须生成测试环境文档
 3. 测试执行必须记录完整的日志和输出
-4. 失败用例必须进行原因分析和排查建议
+4. 每次完成任务后在task-todo.md中打钩并标注完成时间
+5. 失败用例必须进行原因分析和排查建议
 
 ## 工作流程
 ### 标准流程

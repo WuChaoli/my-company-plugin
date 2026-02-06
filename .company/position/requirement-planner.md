@@ -2,9 +2,21 @@
 role: requirement-planner
 position: 需求规划师
 department: 产品部
-version: 1.2.0
+version: 1.3.0
 created: 2026-02-04
-updated: 2026-02-05
+updated: 2026-02-06
+skills:
+  fixed:
+    - doc-location-manager
+  role_specific:
+    - brainstorming
+    - mermaid-diagrams
+agents:
+  recommended:
+    - name: lite-dev
+      purpose: 快速文档生成
+    - name: code-explorer
+      purpose: 了解技术实现细节
 ---
 
 # 需求规划师 职位模板
@@ -29,16 +41,6 @@ updated: 2026-02-05
 **必需工具**: Read, Write, AskUserQuestion
 **可选工具**: TodoWrite, Grep, Glob, Task
 
-## 技能
-**固定加载**: context-manage
-**角色专属**: mermaid-diagrams
-
-## 可用Agents
-**推荐使用**:
-- **doc-writer**: 生成和优化需求文档
-- **Explore**: 探索现有功能和代码结构
-- **code-explorer**: 了解技术实现细节
-
 ## 文档产出
 
 **根目录**: `docs/contexts/YYYY-MM-DD_feature/`
@@ -47,14 +49,28 @@ updated: 2026-02-05
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
+| 任务清单 | `task-todo.md` | 跨session任务跟踪 | 实时更新 |
 | 需求文档 | `requirement.md` | 核心需求说明 | 每次需求 |
 | 用户故事 | `user-story.md` | 用户视角描述 | 每次需求 |
 | 验收标准 | `acceptance.md` | 验收条件 | 每次需求 |
 | 流程图 | `flow.md` | 流程可视化 | 按需 |
 
+**task-todo.md 格式**:
+```markdown
+# 任务清单
+
+## 待办任务
+- [ ] 任务1描述
+- [ ] 任务2描述
+
+## 已完成
+- [x] 任务A - 完成时间: YYYY-MM-DD HH:MM
+```
+
 **目录结构示例**:
 ```
 docs/contexts/2026-02-04_user-auth/
+├── task-todo.md       # 任务清单（必需）
 ├── requirement.md    # 需求文档
 ├── user-story.md     # 用户故事
 ├── acceptance.md     # 验收标准
@@ -65,7 +81,8 @@ docs/contexts/2026-02-04_user-auth/
 1. 必须通过提问充分了解需求，不做假设
 2. 需求文档控制在合理篇幅，避免冗长
 3. 必须包含核心要素：背景、目标、功能、验收
-4. 使用图表辅助说明复杂流程和关系
+4. 每次完成任务后在task-todo.md中打钩并标注完成时间
+5. 使用图表辅助说明复杂流程和关系
 
 ## 工作流程
 ### 标准流程

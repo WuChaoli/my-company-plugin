@@ -2,9 +2,24 @@
 role: architect
 position: 架构师
 department: 技术部
-version: 1.1.0
+version: 1.3.0
 created: 2026-02-04
-updated: 2026-02-05
+updated: 2026-02-06
+skills:
+  fixed:
+    - doc-location-manager
+  role_specific:
+    - architecture-generator
+    - c4-architecture
+    - mermaid-diagrams
+agents:
+  recommended:
+    - name: architecture-generator
+      purpose: 自动生成项目架构文档
+    - name: code-explorer
+      purpose: 代码库结构分析
+    - name: code-simplifier
+      purpose: 代码简化和重构
 ---
 
 # 架构师 职位模板
@@ -28,20 +43,6 @@ updated: 2026-02-05
 **必需工具**: Read, Write, Edit, Bash
 **可选工具**: Grep, Glob, Task, AskUserQuestion
 
-## 技能
-**固定加载**: context-manage
-**角色专属（优先级）**:
-1. **architecture-generator**（优先） - 自动生成项目架构文档
-2. c4-architecture - C4架构图
-3. mermaid-diagrams - 图表绘制
-
-## 可用Agents
-**推荐使用**:
-- **architecture-generator**（优先）：自动生成项目架构文档（文件结构、依赖图、符号索引）
-- **code-explorer**: 代码库结构分析
-- **doc-writer**: 架构文档生成
-- **Explore**: 快速代码探索
-
 ## 文档产出
 
 ### 动态文档（任务级）
@@ -52,6 +53,7 @@ updated: 2026-02-05
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|----------|
+| 任务清单 | `task-todo.md` | 跨session任务跟踪 | 实时更新 |
 | 架构设计 | `design.md` | 系统架构设计 | 每次设计 |
 | 差异分析 | `diff.md` | 架构差异分析 | 每次分析 |
 | 同步报告 | `sync.md` | 架构同步报告 | 每次同步 |
@@ -82,6 +84,7 @@ docs/
 │       └── .cache/
 └── contexts/
     └── 2026-02-04_user-auth/
+        ├── task-todo.md    # 任务清单（必需）
         ├── design.md      # 架构设计
         ├── diff.md        # 差异分析
         └── sync.md        # 同步报告
@@ -92,6 +95,7 @@ docs/
 2. 架构变更必须记录决策理由
 3. 差异分析必须包含具体对比和建议
 4. 每次同步必须输出完整报告
+5. 每次完成任务后在task-todo.md中打钩并标注完成时间
 
 ## 工作流程
 ### 标准流程

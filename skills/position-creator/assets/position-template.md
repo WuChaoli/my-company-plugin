@@ -5,6 +5,18 @@ department: [department-name]
 version: 1.0.0
 created: [YYYY-MM-DD]
 updated: [YYYY-MM-DD]
+skills:
+  fixed:
+    - doc-location-manager
+  role_specific:
+    - [skill-1]
+    - [skill-2]
+agents:
+  recommended:
+    - name: [agent-name-1]
+      purpose: [用途说明]
+    - name: [agent-name-2]
+      purpose: [用途说明]
 ---
 
 # [职位名称] 职位模板

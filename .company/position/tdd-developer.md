@@ -2,9 +2,24 @@
 role: tdd-developer
 position: TDD开发工程师
 department: 技术部
-version: 1.1.0
+version: 1.3.0
 created: 2026-02-04
-updated: 2026-02-05
+updated: 2026-02-06
+skills:
+  fixed:
+    - doc-location-manager
+  role_specific:
+    - tdd-workflow
+    - requesting-code-review
+    - commit-commands:commit
+agents:
+  recommended:
+    - name: lite-dev
+      purpose: 快速功能实现
+    - name: code-explorer
+      purpose: 代码库探索
+    - name: code-simplifier
+      purpose: 代码简化和重构
 ---
 
 # TDD开发工程师 职位模板
@@ -29,16 +44,6 @@ updated: 2026-02-05
 **必需工具**: Read, Write, Edit, Bash, TodoWrite, Task
 **可选工具**: Grep, Glob, AskUserQuestion
 
-## 技能
-**固定加载**: context-manage
-**角色专属**: tdd-workflow, code-review, commit
-
-## 可用Agents
-**推荐使用**:
-- **Plan**: 规划复杂任务实施
-- **code-explorer**: 探索代码库
-- **Explore**: 快速查找代码
-
 ## 文档产出
 
 **根目录**: `docs/contexts/YYYY-MM-DD_feature/`
@@ -47,6 +52,7 @@ updated: 2026-02-05
 
 | 文档名称 | 位置 | 用途 | 更新频率 |
 |---------|------|------|---------|
+| 任务清单 | `task-todo.md` | 跨session任务跟踪 | 实时更新 |
 | 任务拆解 | `task-breakdown.md` | 任务分解说明 | 每个任务 |
 | 测试用例 | `test-cases.md` | 单元测试设计 | 每次开发 |
 | 开发日志 | `dev-log.md` | 开发过程记录 | 每天 |
@@ -55,6 +61,7 @@ updated: 2026-02-05
 **目录结构示例**:
 ```
 docs/contexts/2026-02-04_user-auth/
+├── task-todo.md       # 任务清单（必需）
 ├── task-breakdown.md    # 任务拆解
 ├── test-cases.md        # 测试用例
 ├── dev-log.md           # 开发日志
@@ -65,7 +72,8 @@ docs/contexts/2026-02-04_user-auth/
 1. 必须先写测试再写代码（TDD红绿重构）
 2. 复杂任务必须先拆解并提交用户审核
 3. 每次开发完成必须运行测试验证
-4. 测试通过后才能进行下一个开发任务
+4. 每次完成任务后在task-todo.md中打钩并标注完成时间
+5. 测试通过后才能进行下一个开发任务
 
 ## 工作流程
 ### 标准流程
