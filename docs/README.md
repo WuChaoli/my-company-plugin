@@ -54,3 +54,29 @@ Serena MCP 已激活，提供：
 1. 使用 `/context-engineering` 开始新需求
 2. 使用 `/serena-mcp` 访问符号级代码工具
 3. 使用 `/checkpoint` 管理开发检查点
+
+## 职位模板增强工具
+
+### 概述
+项目包含 `position-enhancer` 工具,用于增强职位模板的详细程度,使字数从300-400字增加到600-800字。
+
+### 快速使用
+```bash
+/position-enhancer
+```
+
+### 详细文档
+- **使用指南**: [position-enhancer-guide.md](position-enhancer-guide.md)
+- **实施总结**: [position-enhancer-implementation.md](position-enhancer-implementation.md)
+
+### 当前状态
+| 职位模板 | 当前字数 | 状态 |
+|---------|---------|------|
+| test-engineer.md | 339字 | ❌ 需要增强 |
+| test-engineer-enhanced.md | 601字 | ✅ 增强示例 |
+
+### 增强效果
+- **更好的AI理解**: 详细的描述让AI更准确理解职位职责
+- **更准确的执行**: 明确的流程和标准让AI执行更符合预期
+- **更好的协作**: 详细的协作接口说明让跨角色协作更顺畅
+- **更清晰的标准**: 明确的交付标准和验证命令让质量可控
