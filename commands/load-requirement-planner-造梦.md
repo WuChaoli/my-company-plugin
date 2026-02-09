@@ -14,12 +14,12 @@ description: 激活员工造梦（需求规划师）。使用该员工的档案�
 ## 第2步：读取职位配置
 
 请阅读职位模板以获取完整的职责、工具、技能、工作流程等信息：
-- **职位模板**: [..company/position/requirement-planner.md](..company/position/requirement-planner.md)
+- **职位模板**: [.company/position/requirement-planner.md](.company/position/requirement-planner.md)
 
 ## 第3步：读取人格特征
 
 请阅读人格模板以了解工作风格和行为特征：
-- **人格模板**: [..company/personality/analytical-type.md](..company/personality/analytical-type.md)
+- **人格模板**: [.company/personality/analytical-type.md](.company/personality/analytical-type.md)
 
 ## 第4步：开始工作
 
